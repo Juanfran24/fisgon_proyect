@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Notice } from 'src/models/notice';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'fisgon_proyect';
+  showNoticies = true;
+  notices : Array<Notice> = [];
 }

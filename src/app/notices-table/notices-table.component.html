@@ -1,0 +1,74 @@
+<label for="filterSelect" *ngIf="filterFor === ''">Selecione filtro:</label>
+<select name="filterSelect" [(ngModel)]="filterFor">
+  <option disabled>seleccione filtro...</option>
+  <option value="author">Por autor</option>
+  <option value="date">Por fecha</option>
+</select>
+<input type="text" placeholder="Buscar por autor" [(ngModel)]="filter" *ngIf="filterFor === 'author'">
+<input type="date" [(ngModel)]="filter" *ngIf="filterFor === 'date'">
+<button (click)="filterNotices">Filtrar</button>
+<!-- table general -->
+<table *ngIf="noticesFilter.length === 0">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Titular</th>
+      <th>Cuerpo</th>
+      <th>Fecha</th>
+      <th>Autor</th>
+      <th>Acción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let notice of notices">
+      <td>{{notice.id}}</td>
+      <td>{{notice.title}}</td>
+      <td>{{notice.description}}</td>
+      <td>{{notice.date}}</td>
+      <td>{{notice.author}}</td>
+      <td>
+        <button (click)="editNotice($event, notice)">Editar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<!-- table for filter -->
+<table *ngIf="noticesFilter.length !== 0">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Titular</th>
+      <th>Cuerpo</th>
+      <th>Fecha</th>
+      <th>Autor</th>
+      <th>Acción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let notice of noticesFilter">
+      <td>{{notice.id}}</td>
+      <td>{{notice.title}}</td>
+      <td>{{notice.description}}</td>
+      <td>{{notice.date}}</td>
+      <td>{{notice.author}}</td>
+      <td>
+        <button (click)="editNotice($event, notice)">Editar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div *ngIf="showFormEdit">
+  <h2>Formulario para editar</h2>
+  <form>
+    <label for="title">Titular</label>
+    <input type="text" name="title" [(ngModel)]="noticeEdit.title">
+    <label for="description">Cuerpo</label>
+    <input type="text" name="description" [(ngModel)]="noticeEdit.description">
+    <label for="author">Autor</label>
+    <input type="text" name="author" [(ngModel)]="noticeEdit.author">
+    <label for="date">Fecha</label>
+    <input type="date" name="date" [(ngModel)]="noticeEdit.date">
+    <button (click)="updateNotice($event)">Guardar</button>
+    <button (click)="cancelEdit($event)">Cancelar</button>
+  </form>
+</div>

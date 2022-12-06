@@ -1,0 +1,21 @@
+<h2>Formulario para noticias</h2>
+<form class="form">
+  <label for="titular">
+    Titular:
+    <input type="text" name="titular" [(ngModel)]="notice.title">
+  </label><br>
+  <label for="titular">
+    Cuerpo:
+    <textarea type="text" name="titular" [(ngModel)]="notice.description"></textarea>
+  </label><br>
+  <label for="titular">
+    Autor:
+    <input type="text" name="titular" [(ngModel)]="notice.author">
+  </label><br>
+  <label for="titular">
+    Fecha:
+    <input type="date" name="titular" [(ngModel)]="notice.date">
+  </label><br>
+  <button (click)="createNotice($event)" class="submit-button">Crear Noticia</button>
+  <button (click)="clearNotice($event)" class="clear-button">Limpiar</button>
+</form>
